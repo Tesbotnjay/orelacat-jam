@@ -2,7 +2,7 @@
 #
 # Deploy this service manually on Render Dashboard (Recommended):
 # - New -> Web Service, connect repo
-# - Root Directory: backend
+# - Root Directory: . (repo root)
 # - Runtime: Go
 # - Build Command: go build -o server .
 # - Start Command: ./server
@@ -13,11 +13,11 @@
 
 services:
   - type: web
-    name: orelacat-listen-together
+    name: orelacat-jam
     runtime: go
     plan: free
     region: singapore
-    rootDir: backend
+    rootDir: .
     buildCommand: go build -o server .
     startCommand: ./server
     healthCheckPath: /healthz
