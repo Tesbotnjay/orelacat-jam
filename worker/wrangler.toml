@@ -1,0 +1,29 @@
+name = "orelacat-jam"
+main = "src/worker.js"
+compatibility_date = "2025-01-01"
+
+# One Durable Object per party code: it holds the party state and the sockets.
+[[durable_objects.bindings]]
+name = "PARTY_ROOM"
+class_name = "PartyRoom"
+
+# The service-wide room ceiling, the way PartyStore kept one map in Go.
+[[durable_objects.bindings]]
+name = "DIRECTORY"
+class_name = "DirectoryDO"
+
+# The open-app counter.
+[[durable_objects.bindings]]
+name = "PRESENCE"
+class_name = "PresenceDO"
+
+# Durable Objects on the free plan require the SQLite backend, which is what
+# new_sqlite_classes selects. All three use key/value storage only.
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["PartyRoom", "DirectoryDO", "PresenceDO"]
+
+[vars]
+JAM_MAX_PARTIES = "50"
+JAM_MAX_MEMBERS = "5"
+JAM_PUBLIC_ORIGIN = "https://orelacat-jam.orelacat.workers.dev"
