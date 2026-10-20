@@ -19,7 +19,7 @@ services:
     region: singapore
     rootDir: .
     buildCommand: go build -o server .
-    startCommand: ./server
+    startCommand: orelacat-jam
     healthCheckPath: /healthz
     numInstances: 1
     envVars:
